@@ -61,16 +61,21 @@ class MenuPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MenuButton(
-              title: 'Energy Analysis of my house',
+              title: 'Energy Analysis',
               subtitle: 'Analyze energy consumption',
               icon: Icons.lightbulb,
               onPressed: () {
-                // Navigate to Energy Analysis page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EnergyAnalysisPage(),
+                  ),
+                );
               },
             ),
             SizedBox(height: 16.0),
             MenuButton(
-              title: 'My saved spaces and their energy usage breakdown',
+              title: 'Saved Spaces',
               subtitle: 'View saved spaces',
               icon: Icons.save,
               onPressed: () {
@@ -85,28 +90,43 @@ class MenuPage extends StatelessWidget {
             SizedBox(height: 16.0),
             MenuButton(
               title: 'News',
-              subtitle: 'Latest updates and articles',
+              subtitle: 'Latest updates',
               icon: Icons.article,
               onPressed: () {
-                // Navigate to News page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewsPage(),
+                  ),
+                );
               },
             ),
             SizedBox(height: 16.0),
             MenuButton(
-              title: 'Suggestion Box',
-              subtitle: 'Provide suggestions and feedback',
+              title: 'Suggestions',
+              subtitle: 'Provide feedback',
               icon: Icons.comment,
               onPressed: () {
-                // Navigate to Suggestion Box page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SuggestionsPage(),
+                  ),
+                );
               },
             ),
             SizedBox(height: 16.0),
             MenuButton(
               title: 'Settings',
-              subtitle: 'App settings and preferences',
+              subtitle: 'App settings',
               icon: Icons.settings,
               onPressed: () {
-                // Navigate to Settings page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ),
+                );
               },
             ),
           ],
@@ -116,6 +136,7 @@ class MenuPage extends StatelessWidget {
   }
 }
 
+// Menu button widget
 class MenuButton extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -157,6 +178,7 @@ class MenuButton extends StatelessWidget {
   }
 }
 
+// Appliance model
 class Appliance {
   final String name;
   final String usagePerDay;
@@ -169,119 +191,20 @@ class Appliance {
   });
 }
 
+// Saved spaces page
 class SavedSpacesPage extends StatelessWidget {
   final List<Appliance> appliances = [
     Appliance(
-      name: 'Television',
-      usagePerDay: '5 hours',
+      name: 'TV',
+      usagePerDay: '5 hrs',
       costPerMonth: '\$10',
     ),
     Appliance(
-      name: 'Refrigerator',
-      usagePerDay: '24 hours',
+      name: 'Fridge',
+      usagePerDay: '24 hrs',
       costPerMonth: '\$20',
     ),
-    // Add more appliances here
-    Appliance(
-      name: 'Air Conditioner',
-      usagePerDay: '8 hours',
-      costPerMonth: '\$50',
-    ),
-    Appliance(
-      name: 'Ceiling Fan',
-      usagePerDay: '10 hours',
-      costPerMonth: '\$2',
-    ),
-    Appliance(
-      name: 'Hair Dryer',
-      usagePerDay: '0.5 hours',
-      costPerMonth: '\$1.50',
-    ),
-    Appliance(
-      name: 'Lawn Mower',
-      usagePerDay: '-',
-      costPerMonth: '-',
-    ),
-    Appliance(
-      name: 'Dishwasher',
-      usagePerDay: '1 hour',
-      costPerMonth: '\$15',
-    ),
-    Appliance(
-      name: 'Electric Water Heater',
-      usagePerDay: '3 hours',
-      costPerMonth: '\$45',
-    ),
-    Appliance(
-      name: 'Gaming Console',
-      usagePerDay: '2 hours',
-      costPerMonth: '\$5',
-    ),
-    Appliance(
-      name: 'Laptop',
-      usagePerDay: '4 hours',
-      costPerMonth: '\$2',
-    ),
-    Appliance(
-      name: 'Coffee Maker',
-      usagePerDay: '1 hour',
-      costPerMonth: '\$10',
-    ),
-    Appliance(
-      name: 'DVD Player',
-      usagePerDay: '2 hours',
-      costPerMonth: '\$0.50',
-    ),
-    Appliance(
-      name: 'Desk Lamp',
-      usagePerDay: '3 hours',
-      costPerMonth: '\$1.20',
-    ),
-    Appliance(
-      name: 'Electric Shaver',
-      usagePerDay: '0.5 hours',
-      costPerMonth: '\$0.75',
-    ),
-    Appliance(
-      name: 'Toaster',
-      usagePerDay: '0.25 hours',
-      costPerMonth: '\$1.20',
-    ),
-    Appliance(
-      name: 'Audio Receiver',
-      usagePerDay: '3 hours',
-      costPerMonth: '\$4.50',
-    ),
-    Appliance(
-      name: 'Power Tools',
-      usagePerDay: 'Varies',
-      costPerMonth: '\$6 (estimated)',
-    ),
-    Appliance(
-      name: 'Microwave',
-      usagePerDay: '0.25 hours',
-      costPerMonth: '\$1.50',
-    ),
-    Appliance(
-      name: 'Cable Box',
-      usagePerDay: '8 hours',
-      costPerMonth: '\$1',
-    ),
-    Appliance(
-      name: 'Clock Radio',
-      usagePerDay: '8 hours',
-      costPerMonth: '\$0.30',
-    ),
-    Appliance(
-      name: 'Electric Toothbrush',
-      usagePerDay: '0.5 hours',
-      costPerMonth: '\$0.03',
-    ),
-    Appliance(
-      name: 'Blender',
-      usagePerDay: '0.25 hours',
-      costPerMonth: '\$0.75',
-    ),
+    // More appliances
   ];
 
   @override
@@ -290,32 +213,77 @@ class SavedSpacesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('My Saved Spaces'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: appliances.length,
-          itemBuilder: (context, index) {
-            final appliance = appliances[index];
-            return Card(
-              child: ListTile(
-                leading: Icon(
-                  Icons.lightbulb,
-                  size: 48.0,
-                  color: Theme.of(context).primaryColor,
-                ),
-                title: Text(appliance.name),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Usage per Day: ${appliance.usagePerDay}'),
-                    Text('Cost per Month: ${appliance.costPerMonth}'),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
+      body: ListView.builder(
+        itemCount: appliances.length,
+        itemBuilder: (context, index) {
+          return ApplianceListTile(appliance: appliances[index]);
+        },
       ),
+    );
+  }
+}
+
+// Appliance list tile
+class ApplianceListTile extends StatelessWidget {
+  final Appliance appliance;
+
+  const ApplianceListTile({Key? key, required this.appliance})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.lightbulb),
+      title: Text(appliance.name),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Usage: ${appliance.usagePerDay}'),
+          Text('Cost: ${appliance.costPerMonth}'),
+        ],
+      ),
+    );
+  }
+}
+
+// Other page widgets
+
+class EnergyAnalysisPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Energy Analysis')),
+      body: Center(child: Text('Energy analysis page')),
+    );
+  }
+}
+
+class NewsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('News')),
+      body: Center(child: Text('News page')),
+    );
+  }
+}
+
+class SuggestionsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Suggestions')),
+      body: Center(child: Text('Suggestions page')),
+    );
+  }
+}
+
+class SettingsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Settings')),
+      body: Center(child: Text('Settings page')),
     );
   }
 }
